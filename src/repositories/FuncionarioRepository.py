@@ -72,3 +72,25 @@ def delete(funcionario: FuncionarioDB):
         raise e;
     finally:
         session.close();
+        
+def findByCPF(cpf: str):
+    try:
+        session = DatabaseConnection.Session();
+        
+        funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).one();
+        return funcionario;
+    except Exception as e:
+        raise e;
+    finally:
+        session.close();
+        
+def findByCPFAndSenha(cpf: str, senha: str):
+    try:
+        session = DatabaseConnection.Session();
+        
+        funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).filter(FuncionarioDB.senha == senha).one();
+        return funcionario;
+    except Exception as e:
+        raise e;
+    finally:
+        session.close();

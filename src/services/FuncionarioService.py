@@ -49,3 +49,17 @@ def delete(id: int):
         repository.delete(funcionario);
     except Exception as e:
         raise e;
+    
+def findByCpf(cpf: str):
+    try:
+        funcionario = repository.findByCPF(cpf);
+        return funcionario;
+    except Exception as e:
+        raise e;
+    
+def findByCPFAndSenha(cpf: str, senha: str):
+    try:
+        funcionario = repository.findByCPFAndSenha(cpf, senha);
+        return funcionario;
+    except Exception as e:
+        raise e;
