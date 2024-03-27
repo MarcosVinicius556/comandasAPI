@@ -47,21 +47,12 @@ def findById(id: int):
     finally:
         session.close();
         
-def update(id: int, newFuncionario: FuncionarioModel):
+def update(newFuncionario: FuncionarioModel):
     try:
         session = db.Session();
         
-        oldFuncionario = findById(id);
-        
-        oldFuncionario.nome = newFuncionario.nome;
-        oldFuncionario.matricula = newFuncionario.matricula;
-        oldFuncionario.cpf = newFuncionario.cpf;
-        oldFuncionario.telefone = newFuncionario.telefone;
-        oldFuncionario.grupo = newFuncionario.grupo;
-        oldFuncionario.senha = newFuncionario.senha;
-        
         session.begin();
-        session.add(oldFuncionario);
+        session.add(newFuncionario);
         session.commit();
     except Exception as e:
         session.rollback();
@@ -69,11 +60,9 @@ def update(id: int, newFuncionario: FuncionarioModel):
     finally:
         session.close();
 
-def delete(id: int):
+def delete(funcionario: FuncionarioDB):
     try:
         session = db.Session();
-        
-        funcionario = findById(id);
         
         session.begin();
         session.delete(funcionario);
