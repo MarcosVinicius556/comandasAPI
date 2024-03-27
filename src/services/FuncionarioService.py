@@ -52,8 +52,8 @@ def delete(id: int):
     
 def findByCpf(cpf: str):
     try:
-        funcionario = repository.findByCPF(cpf);
-        return funcionario;
+        funcionarios = repository.findByCPF(cpf);
+        return funcionarios;
     except Exception as e:
         raise e;
     

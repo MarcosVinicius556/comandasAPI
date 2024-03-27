@@ -32,8 +32,6 @@ def findById(id: int):
     except Exception as e:
         return {"erro": str(e)}, 400;
 
-
-
 @router.put("/funcionario/{id}", tags=["Funcionário"])
 def update(id: int, obj: FuncionarioModel):
     try:
@@ -49,3 +47,21 @@ def delete_funcionario(id: int):
         service.delete(id);
     except Exception as e:
         return {"erro": str(e)}, 400
+
+@router.get("/funcionario/cpf/{cpf}", tags=["Funcionário - Valida CPF"])
+def findByCPF(cpf: str):
+    try:
+        funcionarios = service.findByCpf(cpf);
+        
+        return funcionarios, 200;
+    except Exception as e:
+        return {"erro": str(e)}, 400;
+
+@router.post("/funcionario/login", tags=["Funcionário - Login"])
+def findByCPFAndSenha(obj: FuncionarioModel):
+    try:
+        funcionario = service.findByCPFAndSenha(obj.cpf, obj.senha);
+        
+        return funcionario, 200;
+    except Exception as e:
+        return {"erro": str(e)}, 400;

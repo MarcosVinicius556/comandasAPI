@@ -77,8 +77,8 @@ def findByCPF(cpf: str):
     try:
         session = DatabaseConnection.Session();
         
-        funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).one();
-        return funcionario;
+        funcionarios = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).all();
+        return funcionarios;
     except Exception as e:
         raise e;
     finally:
