@@ -3,7 +3,7 @@ from sqlalchemy import Column, VARCHAR, CHAR, Integer;
 
 #Mapeamento ORM
 
-class FuncionarioDB(db.base):
+class FuncionarioDB(db.Base):
     #Atributo obrigatório, ele que ficará responsável por definir o nome da tabela no banco
     #Semelhante ao @Table( name = "tb_funcionario" ) utilizado em JPA
     __tablename__ = 'tb_funcionario';
