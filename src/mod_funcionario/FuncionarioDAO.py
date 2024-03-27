@@ -99,5 +99,29 @@ def delete_funcionario(id: int):
         return {"erro": str(e)}, 400
     finally:
         session.close();
+    
+@router.post("/funcionario/login", tags=["Funcionário - Login"])
+def login_funcionario(obj: FuncionarioModel):
+    try:
+        session = db.Session();
+        
+        funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == obj.cpf).filter(FuncionarioDB.senha == obj.senha).one();
+        
+        return funcionario, 200;
+    except Exception as e:
+        return {"erro": str(e)}, 400;
+    finally:
+        session.close();
 
-
+@router.get("/funcionario/cpf/{cpf}", tags=["Funcionário - Valida CPF"])
+def cpf_funcionario(cpf: str):
+    try:
+        session = db.Session();
+        
+        funcionarios = session.query().filter(FuncionarioDB.cpf == cpf).all();
+        
+        return funcionarios, 200;
+    except Exception as e:
+        return {"erro": str(e)}, 400;
+    finally:
+        session.close();
