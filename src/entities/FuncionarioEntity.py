@@ -1,9 +1,8 @@
-import db;
+import config.database.DatabaseConnection as DatabaseConnection;
 from sqlalchemy import Column, VARCHAR, CHAR, Integer;
 
 #Mapeamento ORM
-
-class FuncionarioDB(db.Base):
+class FuncionarioDB(DatabaseConnection.Base):
     #Atributo obrigatório, ele que ficará responsável por definir o nome da tabela no banco
     #Semelhante ao @Table( name = "tb_funcionario" ) utilizado em JPA
     __tablename__ = 'tb_funcionario';

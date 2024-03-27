@@ -9,12 +9,12 @@ def insert(newFuncionario: FuncionarioModel):
     try:
         funcionarioDB = FuncionarioDB(None, newFuncionario.nome, newFuncionario.matricula, newFuncionario.cpf, newFuncionario.telefone, newFuncionario.grupo, newFuncionario.senha);
         repository.insert(funcionarioDB)
+        return newFuncionario;
     except Exception as e:
         raise e;
         
 def findAll():
     try:
-        
         funcionarios = repository.findAll();
         return funcionarios;
     except Exception as e:
@@ -39,6 +39,7 @@ def update(id: int, newFuncionario: FuncionarioModel):
         funcionario.senha = newFuncionario.senha;
         
         repository.update(funcionario)
+        return newFuncionario;
     except Exception as e:
         raise e;
 

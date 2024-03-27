@@ -1,12 +1,10 @@
 from fastapi import FastAPI;
-from settings import HOST, PORT, RELOAD;
+from config.database.DatabaseConfig import HOST, PORT, RELOAD;
 
 #Import das rotas
-from mod_funcionario import FuncionarioDAO;
-from mod_cliente import ClienteDAO;
-from mod_produto import ProdutoDAO;
+from resources import FuncionarioResource;
 
-import db;
+import config.database.DatabaseConnection as DatabaseConnection;
 
 app = FastAPI();
 
@@ -16,12 +14,10 @@ def root():
     return {"detail": "API Pastelaria", "SwaggerUI": "http://127.0.0.1:8000/docs", "Redoc": "http://127.0.0.1:8000/redoc"}, 200
 
 #Atribuindo as rotas para a aplicação
-app.include_router(FuncionarioDAO.router);
-app.include_router(ClienteDAO.router);
-app.include_router(ProdutoDAO.router);
+app.include_router(FuncionarioResource.router);
 
 #Caso não exista, cria as tabelas no banco de dados
-db.criaTabelas();
+DatabaseConnection.criaTabelas();
 
 if __name__ == "__main__":
     import uvicorn
