@@ -30,3 +30,14 @@ content-type: application/json
 
 ### Verbo DELETE - excluir
 DELETE http://localhost:8000/funcionario/3 HTTP/1.1
+
+### Verbo GET – Buscar por CPF
+GET http://localhost:8000/funcionario/cpf/00000000000 HTTP/1.1
+
+### Verbo POST – Buscar por CPF e SENHA
+PUT http://localhost:8000/funcionario/login HTTP/1.1
+content-type: application/json
+{
+"cpf" : "00000000000",
+"senha" : "123456"
+}
