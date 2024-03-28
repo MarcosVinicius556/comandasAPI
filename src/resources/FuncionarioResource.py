@@ -42,7 +42,7 @@ def update(id: int, obj: FuncionarioModel):
         return { "erro": str(e) }, 400;
 
 @router.delete("/funcionario/{id}", tags=["Funcionário"])
-def delete_funcionario(id: int):
+def delete(id: int):
     try:
         service.delete(id);
     except Exception as e:
