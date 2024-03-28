@@ -6,26 +6,28 @@ GET http://localhost:8000/funcionario/10 HTTP/1.1
 
 ### Verbo POST – adicionar
 POST http://localhost:8000/funcionario/ HTTP/1.1
-content-type: application/json
+Content-Type: application/json
+
 {
-"nome" : "Abc da Silva",
-"cpf" : "01923874656",
-"telefone" : "49988234567",
-"senha" : "bolinhas",
-"matricula" : "12345",
-"grupo" : 1
+  "nome": "Abc da Silva",
+  "cpf": "01923874656",
+  "telefone": "49988234567",
+  "senha": "bolinhas",
+  "matricula": "12345",
+  "grupo": 1
 }
 
 ### Verbo PUT – atualiza
 PUT http://localhost:8000/funcionario/2 HTTP/1.1
-content-type: application/json
+Content-Type: application/json
+
 {
-"nome" : "Bolinhas dos Testes",
-"cpf" : "12345678909",
-"telefone" : "49898989",
-"senha" : "abc",
-"matricula" : "54321",
-"grupo" : 2
+  "nome" : "Bolinhas dos Testes",
+  "cpf" : "12345678909",
+  "telefone" : "49898989",
+  "senha" : "abc",
+  "matricula" : "54321",
+  "grupo" : 2
 }
 
 ### Verbo DELETE - excluir
@@ -36,8 +38,9 @@ GET http://localhost:8000/funcionario/cpf/00000000000 HTTP/1.1
 
 ### Verbo POST – Buscar por CPF e SENHA
 PUT http://localhost:8000/funcionario/login HTTP/1.1
-content-type: application/json
+Content-Type: application/json
+
 {
-"cpf" : "00000000000",
-"senha" : "123456"
+  "cpf" : "00000000000",
+  "senha" : "123456"
 }

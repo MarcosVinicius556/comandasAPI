@@ -6,20 +6,20 @@ GET http://localhost:8000/cliente/10 HTTP/1.1
 
 ### Verbo POST – adicionar
 POST http://localhost:8000/cliente/ HTTP/1.1
-content-type: application/json
+Content-Type: application/json
 {
-"nome" : "Abc da Silva",
-"cpf" : "01923874656",
-"telefone" : "49988234567",
+  "nome" : "Abc da Silva",
+  "cpf" : "01923874656",
+  "telefone" : "49988234567",
 }
 
 ### Verbo PUT – atualiza
 PUT http://localhost:8000/cliente/2 HTTP/1.1
-content-type: application/json
+Content-Type: application/json
 {
-"nome" : "Bolinhas dos Testes",
-"cpf" : "12345678909",
-"telefone" : "49898989",
+  "nome" : "Bolinhas dos Testes",
+  "cpf" : "12345678909",
+  "telefone" : "49898989",
 }
 
 ### Verbo DELETE - excluir

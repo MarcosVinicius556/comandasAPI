@@ -6,22 +6,24 @@ GET http://localhost:8000/produto/10 HTTP/1.1
 
 ### Verbo POST – adicionar
 POST http://localhost:8000/produto/ HTTP/1.1
-content-type: application/json
+Content-Type: application/json
+
 {
-"nome" : "Livro - Computaria",
-"descricao" : "Teste",
-"foto" : "",
-"valor_unitario" : "10.00",
+  "nome": "Livro - Computaria",
+  "descricao": "Teste",
+  "foto": "000",
+  "valor_unitario": "10,00",
 }
 
 ### Verbo PUT – atualiza
 PUT http://localhost:8000/produto/2 HTTP/1.1
-content-type: application/json
+Content-Type: application/json
+
 {
-"nome" : "Livro - Computaria",
-"descricao" : "Teste",
-"foto" : "",
-"valor_unitario" : "10.00",
+  "nome": "Livro - Computaria",
+  "descricao": "Teste",
+  "foto": "",
+  "valor_unitario": "10.00",
 }
 
 ### Verbo DELETE - excluir
