@@ -1,6 +1,7 @@
 # ISSUES
-    * -> Criar um Exception Handler
-    * -> Função para gerar token JWT (com secret_pass)
-    * -> Função para validar token JWT (Validade, informações)
-    * -> Criar um filtro de autenticação para rotas
-    * -> Mapear as demais colunas para o banco de dados
+    * Criar um Exception Handler -> OK
+    * Função para gerar token JWT (com secret_pass) -> OK
+    * Função para validar token JWT (Validade, informações) -> OK
+    * Mapear as demais colunas para o banco de dados -> OK
+    * Criar um filtro de autenticação para rotas
+    
