@@ -9,6 +9,8 @@ from entities.FuncionarioEntity import FuncionarioDB;
 #Classe responsável por fornecer a conexão com o banco de dados
 import config.database.DatabaseConnection as DatabaseConnection;
 
+from services.exceptions.DatabaseException import DatabaseException;
+
 def insert(newFuncionario: FuncionarioModel):
     try:
         session = DatabaseConnection.Session();
@@ -21,7 +23,7 @@ def insert(newFuncionario: FuncionarioModel):
         
     except Exception as e:
         session.rollback(); 
-        raise e; #Criar exceções personalizadas....
+        raise DatabaseException("Ocorreu um erro ao persistir o objeto.");
     finally:
         session.close();
         
@@ -32,7 +34,7 @@ def findAll():
         funcionarios = session.query(FuncionarioDB).all();
         return funcionarios;
     except Exception as e:
-        raise e; #Criar exceções personalizadas....
+        raise DatabaseException("Ocorreu um erro ao buscar todos os objetos.");
     finally:
         session.close();
         
@@ -43,7 +45,7 @@ def findById(id: int):
         funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.id_funcionario == id).one();
         return funcionario;
     except Exception as e:
-        raise e;
+        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
     finally:
         session.close();
         
@@ -56,7 +58,7 @@ def update(newFuncionario: FuncionarioModel):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise e;
+        raise DatabaseException("Ocorreu um erro ao atualizar o objeto.");
     finally:
         session.close();
 
@@ -69,7 +71,7 @@ def delete(funcionario: FuncionarioDB):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise e;
+        raise DatabaseException("Ocorreu um erro ao remover o objeto.");
     finally:
         session.close();
         
@@ -80,7 +82,7 @@ def findByCPF(cpf: str):
         funcionarios = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).all();
         return funcionarios;
     except Exception as e:
-        raise e;
+        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
     finally:
         session.close();
         
@@ -91,6 +93,6 @@ def findByCPFAndSenha(cpf: str, senha: str):
         funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).filter(FuncionarioDB.senha == senha).one();
         return funcionario;
     except Exception as e:
-        raise e;
+        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
     finally:
         session.close();

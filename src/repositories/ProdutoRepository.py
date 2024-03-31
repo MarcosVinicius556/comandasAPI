@@ -9,6 +9,8 @@ from entities.ProdutoEntity import ProdutoDB;
 #Classe responsável por fornecer a conexão com o banco de dados
 import config.database.DatabaseConnection as DatabaseConnection;
 
+from services.exceptions.DatabaseException import DatabaseException;
+
 def insert(newProduto: ProdutoModel):
     try:
         session = DatabaseConnection.Session();
@@ -21,7 +23,7 @@ def insert(newProduto: ProdutoModel):
         
     except Exception as e:
         session.rollback(); 
-        raise e; #Criar exceções personalizadas....
+        raise DatabaseException("Ocorreu um erro ao persistir o objeto.");
     finally:
         session.close();
         
@@ -32,7 +34,7 @@ def findAll():
         produtos = session.query(ProdutoDB).all();
         return produtos;
     except Exception as e:
-        raise e; #Criar exceções personalizadas....
+        raise DatabaseException("Ocorreu um erro ao buscar todos os objetos.");
     finally:
         session.close();
         
@@ -43,7 +45,7 @@ def findById(id: int):
         produto = session.query(ProdutoDB).filter(ProdutoDB.id_produto == id).one();
         return produto;
     except Exception as e:
-        raise e;
+        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
     finally:
         session.close();
         
@@ -56,7 +58,7 @@ def update(newProduto: ProdutoModel):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise e;
+        raise DatabaseException("Ocorreu um erro ao atualizar o objeto.");
     finally:
         session.close();
 
@@ -69,6 +71,6 @@ def delete(produto: ProdutoModel):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise e;
+        raise DatabaseException("Ocorreu um erro ao remover o objeto.");
     finally:
         session.close();

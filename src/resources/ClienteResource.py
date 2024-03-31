@@ -8,43 +8,26 @@ router = APIRouter();
 
 @router.post("/cliente/", tags=["Cliente"])
 def create(obj: ClienteModel):
-    try:
-        newCliente = service.insert(obj);
-        
-        return { "id": newCliente.id_cliente }, 200;
-    except Exception as e:
-        return {"erro": str(e)}, 400; #Criar um exceptionHandler
+    newCliente = service.insert(obj);
+    return { "id": newCliente.id_cliente }, 200;
 
 @router.get("/cliente/", tags=["Cliente"])
 def findAll():
-    try:
-        clientes = service.findAll();
-        return clientes, 200;
-    except Exception as e:
-        return {"erro": str(e)}, 400;  #Criar um exceptionHandler
+    clientes = service.findAll();
+    return clientes, 200;
 
 @router.get("/cliente/{id}", tags=["Cliente"])
 def findById(id: int):
-    try: 
-        cliente = service.findById(id);
-        
-        return cliente, 200;
-    except Exception as e:
-        return {"erro": str(e)}, 400;
+    cliente = service.findById(id);
+    return cliente, 200;
 
 @router.put("/cliente/{id}", tags=["Cliente"])
 def update(id: int, obj: ClienteModel):
-    try:
-        updatedCliente = service.update(id, obj);
-        
-        return { "id": updatedCliente.id_cliente }, 200;
-    except Exception as e:
-        return { "erro": str(e) }, 400;
+    updatedCliente = service.update(id, obj);
+    return { "id": updatedCliente.id_cliente }, 200;
 
 @router.delete("/cliente/{id}", tags=["Cliente"])
 def delete(id: int):
-    try:
-        service.delete(id);
-    except Exception as e:
-        return {"erro": str(e)}, 400
+    service.delete(id);
+    return { "detail": "Cliente removido com sucesso!" }, 200;
 
