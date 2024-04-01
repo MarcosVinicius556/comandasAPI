@@ -4,8 +4,9 @@ from fastapi.responses import JSONResponse;
 
 from resources.exceptions.StandardError import StandardError;
 
-from services.exceptions.ResourceNotFoundException import ResourceNotFoundException;
 from services.exceptions.DatabaseException import DatabaseException;
+from services.exceptions.ResourceNotFoundException import ResourceNotFoundException;
+from services.exceptions.UnauthorizedException import UnauthorizedException;
 
 #Trata o tipo mais genérico de erro em requisições "Exception"
 async def default_exception_handler(request: Request, exc: Exception) -> JSONResponse:
@@ -34,6 +35,16 @@ async def resource_not_found_exception_handler(request: Request, exc: ResourceNo
     status = 404;
     error = str(exc);
     message = "Nenhum objeto encontrado!";
+    
+    standard_error = StandardError(status=status, error=error, message=message);
+    return JSONResponse( content=standard_error.__dict__ );
+
+#Trata exceção genéricas operações de banco 
+async def resource_unauthorized_exception_handler(request: Request, exc: UnauthorizedException) -> JSONResponse:
+    
+    status = 403;
+    error = str(exc);
+    message = "Esta rota precisa de um token válido para poder ser acessada!";
     
     standard_error = StandardError(status=status, error=error, message=message);
     return JSONResponse( content=standard_error.__dict__ );
