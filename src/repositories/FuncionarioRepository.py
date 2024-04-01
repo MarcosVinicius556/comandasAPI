@@ -23,7 +23,7 @@ def insert(newFuncionario: FuncionarioModel):
         
     except Exception as e:
         session.rollback(); 
-        raise DatabaseException("Ocorreu um erro ao persistir o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao persistir o objeto. {str(e)}");
     finally:
         session.close();
         
@@ -34,7 +34,7 @@ def findAll():
         funcionarios = session.query(FuncionarioDB).all();
         return funcionarios;
     except Exception as e:
-        raise DatabaseException("Ocorreu um erro ao buscar todos os objetos.");
+        raise DatabaseException(f"Ocorreu um erro ao buscar todos os objetos. {str(e)}");
     finally:
         session.close();
         
@@ -45,7 +45,7 @@ def findById(id: int):
         funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.id_funcionario == id).one();
         return funcionario;
     except Exception as e:
-        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao buscar o objeto. {str(e)}");
     finally:
         session.close();
         
@@ -58,7 +58,7 @@ def update(newFuncionario: FuncionarioModel):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise DatabaseException("Ocorreu um erro ao atualizar o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao atualizar o objeto. {str(e)}");
     finally:
         session.close();
 
@@ -71,7 +71,7 @@ def delete(funcionario: FuncionarioDB):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise DatabaseException("Ocorreu um erro ao remover o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao remover o objeto. {str(e)}");
     finally:
         session.close();
         
@@ -82,17 +82,16 @@ def findByCPF(cpf: str):
         funcionarios = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).all();
         return funcionarios;
     except Exception as e:
-        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao buscar o objeto. {str(e)}");
     finally:
         session.close();
         
 def findByCPFAndSenha(cpf: str, senha: str):
     try:
         session = DatabaseConnection.Session();
-        
-        funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).filter(FuncionarioDB.senha == senha).one();
+        funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == cpf).filter(FuncionarioDB.senha == senha).first();
         return funcionario;
     except Exception as e:
-        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao buscar o objeto. {str(e)}");
     finally:
         session.close();

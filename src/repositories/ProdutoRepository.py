@@ -23,7 +23,7 @@ def insert(newProduto: ProdutoModel):
         
     except Exception as e:
         session.rollback(); 
-        raise DatabaseException("Ocorreu um erro ao persistir o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao persistir o objeto. {str(e)}");
     finally:
         session.close();
         
@@ -34,7 +34,7 @@ def findAll():
         produtos = session.query(ProdutoDB).all();
         return produtos;
     except Exception as e:
-        raise DatabaseException("Ocorreu um erro ao buscar todos os objetos.");
+        raise DatabaseException(f"Ocorreu um erro ao buscar todos os objetos. {str(e)}");
     finally:
         session.close();
         
@@ -45,7 +45,7 @@ def findById(id: int):
         produto = session.query(ProdutoDB).filter(ProdutoDB.id_produto == id).one();
         return produto;
     except Exception as e:
-        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao buscar o objeto. {str(e)}");
     finally:
         session.close();
         
@@ -58,7 +58,7 @@ def update(newProduto: ProdutoModel):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise DatabaseException("Ocorreu um erro ao atualizar o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao atualizar o objeto. {str(e)}");
     finally:
         session.close();
 
@@ -71,6 +71,6 @@ def delete(produto: ProdutoModel):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise DatabaseException("Ocorreu um erro ao remover o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao remover o objeto. {str(e)}");
     finally:
         session.close();

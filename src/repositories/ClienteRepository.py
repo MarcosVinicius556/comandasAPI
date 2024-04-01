@@ -23,7 +23,7 @@ def insert(newCliente: ClienteModel):
         
     except Exception as e:
         session.rollback(); 
-        raise DatabaseException("Ocorreu um erro ao persistir o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao persistir o objeto. {str(e)}");
     finally:
         session.close();
         
@@ -34,7 +34,7 @@ def findAll():
         clientes = session.query(ClienteDB).all();
         return clientes;
     except Exception as e:
-        raise DatabaseException("Ocorreu um erro ao buscar todos os objetos.");
+        raise DatabaseException(f"Ocorreu um erro ao buscar todos os objetos. {str(e)}");
     finally:
         session.close();
         
@@ -45,7 +45,7 @@ def findById(id: int):
         cliente = session.query(ClienteDB).filter(ClienteDB.id_cliente == id).one();
         return cliente;
     except Exception as e:
-        raise DatabaseException("Ocorreu um erro ao buscar o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao buscar o objeto. {str(e)}");
     finally:
         session.close();
         
@@ -58,7 +58,7 @@ def update(newCliente: ClienteModel):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise DatabaseException("Ocorreu um erro ao atualizar o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao atualizar o objeto. {str(e)}");
     finally:
         session.close();
 
@@ -71,6 +71,6 @@ def delete(cliente: ClienteModel):
         session.commit();
     except Exception as e:
         session.rollback();
-        raise DatabaseException("Ocorreu um erro ao remover o objeto.");
+        raise DatabaseException(f"Ocorreu um erro ao remover o objeto. {str(e)}");
     finally:
         session.close();

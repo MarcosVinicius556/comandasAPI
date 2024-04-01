@@ -5,7 +5,11 @@ from config.database.DatabaseConfig import HOST, PORT, RELOAD;
 from config.routes.RoutesDefinition import config_application_routes;
 from config.exception.ExceptionConfig import config_exception_handlers;
 
-import config.database.DatabaseConnection as DatabaseConnection;
+#Middlewares
+from config.middleware.MiddlewareConfig import configure_middlewares;
+
+#Database
+from config.database.DatabaseConnection import criaTabelas;
 
 app = FastAPI();
 
@@ -21,7 +25,10 @@ config_application_routes(app);
 config_exception_handlers(app)
 
 #Caso não exista, cria as tabelas no banco de dados
-DatabaseConnection.criaTabelas();
+criaTabelas();
+
+#Configuração de middlewares da aplicação
+configure_middlewares(app);
 
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ from entities.FuncionarioEntity import FuncionarioDB;
 
 from services.exceptions.DatabaseException import DatabaseException;
 from services.exceptions.ResourceNotFoundException import ResourceNotFoundException;
+from config.auth.TokenUtil import createToken;
 
 def insert(newFuncionario: FuncionarioModel):
     try:
@@ -18,6 +19,7 @@ def insert(newFuncionario: FuncionarioModel):
         
 def findAll():
     try:
+        print("Passou aqui 2")
         funcionarios = repository.findAll();
         if len(funcionarios) == 0:
             raise ResourceNotFoundException("Nenhum objeto encontrado.");
@@ -75,13 +77,11 @@ def findByCpf(cpf: str):
     except Exception as e:
         raise e;
     
-def findByCPFAndSenha(cpf: str, senha: str):
+def login(cpf: str, senha: str):
     try:
         funcionario = repository.findByCPFAndSenha(cpf, senha);
-        
         if funcionario is None:
             raise ResourceNotFoundException(f"Objeto não encontrado com o CPF {cpf} e SENHA {senha}");
-        
-        return funcionario;
+        return createToken(funcionario.cpf, funcionario.senha);
     except DatabaseException as databaseException:
         raise databaseException;

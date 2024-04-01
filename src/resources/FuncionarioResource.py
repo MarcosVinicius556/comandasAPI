@@ -37,6 +37,6 @@ def findByCPF(cpf: str):
     return funcionarios, 200;
 
 @router.post("/funcionario/login", tags=["Funcionário - Login"])
-def findByCPFAndSenha(obj: FuncionarioModel):
-    funcionario = service.findByCPFAndSenha(obj.cpf, obj.senha);
-    return funcionario, 200;
+def findByCPFAndSenha(obj: dict):
+    token = service.login(obj["cpf"], obj["senha"]);
+    return {"token": token}, 200;

@@ -8,12 +8,14 @@ SECRET_PASS_TOKEN = "PASTELARIA_DO_ZE";
 ##
 #   Gera um token com o CPF e SENHA de um funcionário.... 
 ##
-async def createToken(cpf: str, senha: str) -> str:
+def createToken(cpf: str, senha: str) -> str:
+    
     # Define o payload do token
     payload = {
         "CPF": cpf,
         "SENHA": senha
     }
+    
 
     # Gera o token
     token = jwt.encode(payload, SECRET_PASS_TOKEN, algorithm="HS256")
@@ -29,10 +31,13 @@ async def validaToken(token: str) -> bool:
         # Tenta decodificar o token
         payload = jwt.decode(token, SECRET_PASS_TOKEN, algorithms=["HS256"])
         
+        #Aqui temos acesso ao CPF e senha do funcionário, e com essas informações podemos buscar e devolver os dados do usuário...
         print(payload) #remover após os testes
         
         return True;
     except jwt.ExpiredSignatureError as expired:
-        raise expired;
+        # raise expired;
+        return False;
     except jwt.InvalidTokenError as invalid:
-        raise invalid;
+        # raise invalid;
+        return False;
