@@ -19,7 +19,6 @@ def insert(newFuncionario: FuncionarioModel):
         
 def findAll():
     try:
-        print("Passou aqui 2")
         funcionarios = repository.findAll();
         if len(funcionarios) == 0:
             raise ResourceNotFoundException("Nenhum objeto encontrado.");
@@ -82,6 +81,6 @@ def login(cpf: str, senha: str):
         funcionario = repository.findByCPFAndSenha(cpf, senha);
         if funcionario is None:
             raise ResourceNotFoundException(f"Objeto não encontrado com o CPF {cpf} e SENHA {senha}");
-        return createToken(funcionario.cpf, funcionario.senha);
+        return createToken(funcionario.id_funcionario);
     except DatabaseException as databaseException:
         raise databaseException;

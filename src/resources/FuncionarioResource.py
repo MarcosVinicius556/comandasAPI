@@ -1,5 +1,6 @@
 from fastapi import APIRouter;
 from models.Funcionario import FuncionarioModel;
+from dto.FuncionarioLoginDTO import FuncionarioLoginDTO;
 
 from services import FuncionarioService as service;
 
@@ -37,6 +38,6 @@ def findByCPF(cpf: str):
     return funcionarios, 200;
 
 @router.post("/funcionario/login", tags=["Funcionário - Login"])
-def findByCPFAndSenha(obj: dict):
-    token = service.login(obj["cpf"], obj["senha"]);
-    return {"token": token}, 200;
+def findByCPFAndSenha(obj: FuncionarioLoginDTO):
+    token = service.login(obj.cpf, obj.senha);
+    return token, 200;

@@ -30,8 +30,9 @@ async def verifica_token(request: Request, call_next) -> JSONResponse :
         
     
         #Valida o token informado
-        token = auth_credential.split(" ")[1]
-        if validaToken(token) == False:
+        token = auth_credential.split(" ")[1];
+        tokenValido = validaToken(token);
+        if tokenValido == False:
             status = 403;
             error = str("Acesso negado!");
             message = "Este token não é válido!";

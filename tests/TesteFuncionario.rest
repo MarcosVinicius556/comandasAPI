@@ -1,17 +1,17 @@
 ### Verbo GET – listar todos
 GET http://localhost:8000/funcionario/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiIwMTkyMzg3NDY1NiIsIlNFTkhBIjoiYm9saW5oYXMifQ.Alwhyb9UnfKLo46PuzONeidbSD6b85OPsXo096EBleE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9mdW5jaW9uYXJpbyI6MSwiZXhwaXJhX2VtIjoiMjAyNC0wNC0wMVQyMzowMzoyMS4zMTgyNjcifQ.DzPO_lhbAbcrWe4voME8SxvtLr6UTlCdNvgXtZB1f2o
 
 ### Verbo GET – listar um
 GET http://localhost:8000/funcionario/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiIwMTkyMzg3NDY1NiIsIlNFTkhBIjoiYm9saW5oYXMifQ.Alwhyb9UnfKLo46PuzONeidbSD6b85OPsXo096EBleE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9mdW5jaW9uYXJpbyI6MSwiZXhwaXJhX2VtIjoiMjAyNC0wNC0wMVQyMzowMzoyMS4zMTgyNjcifQ.DzPO_lhbAbcrWe4voME8SxvtLr6UTlCdNvgXtZB1f2o
 
 ### Verbo POST – adicionar
 POST http://localhost:8000/funcionario/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiIwMTkyMzg3NDY1NiIsIlNFTkhBIjoiYm9saW5oYXMifQ.Alwhyb9UnfKLo46PuzONeidbSD6b85OPsXo096EBleE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9mdW5jaW9uYXJpbyI6MSwiZXhwaXJhX2VtIjoiMjAyNC0wNC0wMVQyMzowMzoyMS4zMTgyNjcifQ.DzPO_lhbAbcrWe4voME8SxvtLr6UTlCdNvgXtZB1f2o
 
 {
   "nome": "Abc da Silva",
@@ -25,7 +25,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiIwMTkyMzg3N
 ### Verbo PUT – atualiza
 PUT http://localhost:8000/funcionario/2 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiIwMTkyMzg3NDY1NiIsIlNFTkhBIjoiYm9saW5oYXMifQ.Alwhyb9UnfKLo46PuzONeidbSD6b85OPsXo096EBleE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9mdW5jaW9uYXJpbyI6MSwiZXhwaXJhX2VtIjoiMjAyNC0wNC0wMVQyMzowMzoyMS4zMTgyNjcifQ.DzPO_lhbAbcrWe4voME8SxvtLr6UTlCdNvgXtZB1f2o
 
 {
   "nome" : "Bolinhas dos Testes",
@@ -38,11 +38,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiIwMTkyMzg3N
 
 ### Verbo DELETE - excluir
 DELETE http://localhost:8000/funcionario/3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiIwMTkyMzg3NDY1NiIsIlNFTkhBIjoiYm9saW5oYXMifQ.Alwhyb9UnfKLo46PuzONeidbSD6b85OPsXo096EBleE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9mdW5jaW9uYXJpbyI6MSwiZXhwaXJhX2VtIjoiMjAyNC0wNC0wMVQyMzowMzoyMS4zMTgyNjcifQ.DzPO_lhbAbcrWe4voME8SxvtLr6UTlCdNvgXtZB1f2o
 
 ### Verbo GET – Buscar por CPF
 GET http://localhost:8000/funcionario/cpf/00000000000 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiIwMTkyMzg3NDY1NiIsIlNFTkhBIjoiYm9saW5oYXMifQ.Alwhyb9UnfKLo46PuzONeidbSD6b85OPsXo096EBleE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9mdW5jaW9uYXJpbyI6MSwiZXhwaXJhX2VtIjoiMjAyNC0wNC0wMVQyMzowMzoyMS4zMTgyNjcifQ.DzPO_lhbAbcrWe4voME8SxvtLr6UTlCdNvgXtZB1f2o
 
 ### Verbo POST – Buscar por CPF e SENHA
 POST http://localhost:8000/funcionario/login HTTP/1.1
