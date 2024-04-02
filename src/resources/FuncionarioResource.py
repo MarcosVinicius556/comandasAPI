@@ -10,7 +10,7 @@ router = APIRouter();
 @router.post("/funcionario/", tags=["Funcionário"])
 def create(obj: FuncionarioModel):
     newFuncionario = service.insert(obj);
-    return { "id": newFuncionario.id_funcionario }, 200;
+    return { "Nome": newFuncionario.nome }, 200;
 
 @router.get("/funcionario/", tags=["Funcionário"])
 def findAll():
@@ -25,7 +25,7 @@ def findById(id: int):
 @router.put("/funcionario/{id}", tags=["Funcionário"])
 def update(id: int, obj: FuncionarioModel):
     updatedFuncionario = service.update(id, obj);
-    return { "id": updatedFuncionario.id_funcionario }, 200;
+    return { "registro_atualizado": updatedFuncionario }, 200;
 
 @router.delete("/funcionario/{id}", tags=["Funcionário"])
 def delete(id: int):
