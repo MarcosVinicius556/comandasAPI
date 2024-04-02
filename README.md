@@ -6,4 +6,6 @@
     * Criar um filtro de autenticação para rotas -> OK
     * Gerar token JWT --> OK
     * Validar token JWT --> OK
+    * Descriptografar senha recebida no endpoint de login --> 
+    * Criptografia de senha --> 
     
