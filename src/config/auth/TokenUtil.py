@@ -8,7 +8,14 @@ from services import FuncionarioService as funcionario_service;
 
 import jwt;
 
-SECRET_PASS_TOKEN = "PASTELARIA_DO_ZE";
+from dotenv import load_dotenv, find_dotenv;
+import os;
+
+#Palavra secreta configurada de forma dinâmica através de variáveis de ambiente
+SECRET_PASS_TOKEN = os.getenv("SECRET_PASS_TOKEN");
+
+#Tipo de algoritimo utilizado para gerar o token JWT
+ALGORITHM = os.getenv("ALGORITHM");
 
 ##
 #   Gera um token com o CPF e SENHA de um funcionário.... 
@@ -25,7 +32,7 @@ def createToken(id_funcionario: int) -> str:
     }
     
     # Gera o token
-    token = jwt.encode(payload, SECRET_PASS_TOKEN, algorithm="HS256")
+    token = jwt.encode(payload, SECRET_PASS_TOKEN, algorithm=ALGORITHM)
 
     return { "token": token, "expira_em": expira_em };
     
@@ -37,7 +44,7 @@ def validaToken(token: str) -> bool:
     try:
         print("Começando processo de validação do token ->")
         # Tenta decodificar o token
-        payload = jwt.decode(token, SECRET_PASS_TOKEN, algorithms=["HS256"])
+        payload = jwt.decode(token, SECRET_PASS_TOKEN, algorithms=[ALGORITHM])
         
         #Aqui temos acesso ao id do funcionário e o "prazo de validade" do token
         id_funcionario = payload['id_funcionario'];
