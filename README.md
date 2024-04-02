@@ -5,5 +5,5 @@
     * Mapear as demais colunas para o banco de dados -> OK
     * Criar um filtro de autenticação para rotas -> OK
     * Gerar token JWT --> OK
-    * Validar token JWT
+    * Validar token JWT --> OK
     
