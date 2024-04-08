@@ -65,6 +65,8 @@ def update(id: int, obj: ClienteModel):
         session.begin();
         session.add(obj);
         session.commit();
+        
+        return {"detail": "Cliente atualizado com sucesso!"}, 200
     except Exception as e:
         session.rollback();
         return {"erro": str(e)}, 400
