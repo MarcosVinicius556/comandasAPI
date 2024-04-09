@@ -3,8 +3,11 @@ from mod_cliente.Cliente import ClienteModel;
 from mod_cliente.ClienteDB import ClienteDB;
 import db;
 
+from fastapi import Depends
+from security import get_current_active_user;
+
 #Objeto para criação das rotas
-router = APIRouter();
+router = APIRouter(dependencies=[Depends(get_current_active_user)]);
 
 @router.post("/cliente/", tags=["Cliente"])
 def create(obj: ClienteModel):

@@ -13,14 +13,14 @@ db_clientes_api = {
         "username": "abc",
         "full_name": "Abc dos Testes",
         "email": "abc@example.com",
-        "password": "$2b$12$5lY1RPNbyFHP2bK/JjjY0eyiIJnmxUfUE0OHi81xg2nN1w1NoKznK",
+        "password": "$2a$12$TvNeofQeJGcV/iFODD9Bn.rbLxQAe5hAwGAJ5WbtcyF9aKLSOMU4K",
         "disabled": False,
     },
         "bolinhas": {
         "username": "bolinhas",
         "full_name": "Bolinhas dos Testes",
         "email": "bolinhas@example.com",
-        "password": "$2b$12$5lY1RPNbyFHP2bK/JjjY0eyiIJnmxUfUE0OHi81xg2nN1w1NoKznK",
+        "password": "$2a$12$TvNeofQeJGcV/iFODD9Bn.rbLxQAe5hAwGAJ5WbtcyF9aKLSOMU4K",
         "disabled": True,
     },
 }
@@ -44,8 +44,8 @@ class UserInDB(User):
     
 #Autenticação
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") # cifra da senha do usuário
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") # token
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") # cifra da senha do usuário
 
 def verify_password(plain_password, password):
     return pwd_context.verify(plain_password, password)
@@ -56,6 +56,7 @@ def get_password_hash(password):
 def get_user(db, username: str):
     if username in db:
         user_dict = db[username]
+        
     return UserInDB(**user_dict)
 
 def authenticate_user(fake_db, username: str, password: str):
@@ -64,6 +65,7 @@ def authenticate_user(fake_db, username: str, password: str):
         return False
     if not verify_password(password, user.password):
         return False
+    return user;
     
 #Geração e validação de token JWT
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
@@ -72,8 +74,9 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
         expire = datetime.now(timezone.utc) + expires_delta
     else:
         expire = datetime.now(timezone.utc) + timedelta(minutes=15)
-        to_encode.update({"exp": expire})
-        encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
@@ -95,6 +98,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
 async def get_current_active_user(current_user: Annotated[User, Depends(get_current_user)],):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
+    
     return current_user;
 
 

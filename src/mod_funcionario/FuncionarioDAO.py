@@ -1,11 +1,13 @@
 from fastapi import APIRouter;
 from mod_funcionario.Funcionario import FuncionarioModel;
 from mod_funcionario.FuncionarioDB import FuncionarioDB;
-
 import db;
 
+from fastapi import Depends
+from security import get_current_active_user;
+
 #Objeto para criação das rotas
-router = APIRouter();
+router = APIRouter(dependencies=[Depends(get_current_active_user)]);
 
 @router.post("/funcionario/", tags=["Funcionário"])
 def create(obj: FuncionarioModel):

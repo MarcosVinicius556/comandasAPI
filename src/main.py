@@ -5,6 +5,7 @@ from settings import HOST, PORT, RELOAD;
 from mod_funcionario import FuncionarioDAO;
 from mod_cliente import ClienteDAO;
 from mod_produto import ProdutoDAO;
+import security;
 
 import db;
 
@@ -19,6 +20,7 @@ def root():
 app.include_router(FuncionarioDAO.router);
 app.include_router(ClienteDAO.router);
 app.include_router(ProdutoDAO.router);
+app.include_router(security.router);
 
 #Caso não exista, cria as tabelas no banco de dados
 db.criaTabelas();

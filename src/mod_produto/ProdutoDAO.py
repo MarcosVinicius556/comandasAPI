@@ -3,8 +3,11 @@ from mod_produto.Produto import ProdutoModel;
 from mod_produto.ProdutoDB import ProdutoDB;
 import db;
 
+from fastapi import Depends
+from security import get_current_active_user;
+
 #Objeto para criação das rotas
-router = APIRouter();
+router = APIRouter(dependencies=[Depends(get_current_active_user)]);
 
 @router.post("/produto/", tags=["Produto"])
 def create(obj: ProdutoModel):
