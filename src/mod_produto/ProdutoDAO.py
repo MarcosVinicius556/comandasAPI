@@ -56,7 +56,7 @@ def update(id: int, obj: ProdutoModel):
         produto = session.query(ProdutoDB).filter(ProdutoDB.id_produto == id).one();
         
         if produto is None:
-            raise {"Nenhum registro encontrado!"}, 400;
+            return {"Detail": "Nenhum registro encontrado!"}, 400;
         
         produto.nome = obj.nome;
         produto.descricao = obj.descricao;
@@ -81,7 +81,7 @@ def delete(id: int):
         produto = session.query(ProdutoDB).filter(ProdutoDB.id_produto == id).one();
 
         if produto is None:
-            raise {"Nenhum registro encontrado!"}, 400;
+            return {"Detail": "Nenhum registro encontrado!"}, 400;
         
         session.begin();
         session.delete(produto);

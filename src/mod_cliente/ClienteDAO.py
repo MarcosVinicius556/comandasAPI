@@ -56,7 +56,7 @@ def update(id: int, obj: ClienteModel):
         cliente = session.query(ClienteDB).filter(ClienteDB.id_cliente == id).one();
         
         if cliente is None:
-            raise {"Nenhum registro encontrado!"}, 400;
+            return {"Detail": "Nenhum registro encontrado!"}, 400;
         
         cliente.nome = obj.nome;
         cliente.cpf = obj.cpf;
@@ -80,7 +80,7 @@ def delete(id: int):
         cliente = session.query(ClienteDB).filter(ClienteDB.id_cliente == id).one();
 
         if cliente is None:
-            raise {"Nenhum registro encontrado!"}, 400;
+            return {"Detail": "Nenhum registro encontrado!"}, 400;
         
         session.begin();
         session.delete(cliente);

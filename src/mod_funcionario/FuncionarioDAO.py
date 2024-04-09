@@ -57,7 +57,7 @@ def update(id: int, obj: FuncionarioModel):
         funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.id_funcionario == id).one();
         
         if funcionario is None:
-            raise {"Nenhum registro encontrado!"}, 400;
+            return {"Detail": "Nenhum registro encontrado!"}, 400;
         
         funcionario.nome = obj.nome;
         funcionario.matricula = obj.matricula;
@@ -70,7 +70,7 @@ def update(id: int, obj: FuncionarioModel):
         session.add(obj);
         session.commit();
         
-        raise {"Funcionário atualizado com sucesso!"}, 200;
+        return {"Detail": "Funcionário atualizado com sucesso!"}, 200;
     except Exception as e:
         session.rollback();
         return {"erro": str(e)}, 400
@@ -84,7 +84,7 @@ def delete(id: int):
         funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.id_funcionario == id).one();
 
         if funcionario is None:
-            raise {"Nenhum registro encontrado!"}, 400;
+            return {"Detail": "Nenhum registro encontrado!"}, 400;
         
         session.begin();
         session.delete(funcionario);
@@ -110,14 +110,14 @@ def findByCPF(cpf: str):
     finally:
         session.close();
 
-@router.post("/funcionario/login", tags=["Funcionário - Login"])
-def findByCPFAndSenha(obj: dict["cpf": str, "senha": str]):
-    try:
-        session = db.Session();
-        funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == obj["cpf"]).filter(FuncionarioDB.senha == obj["senha"]).first();
+# @router.post("/funcionario/login", tags=["Funcionário - Login"])
+# def findByCPFAndSenha(obj: dict["cpf": str, "senha": str]):
+#     try:
+#         session = db.Session();
+#         funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == obj["cpf"]).filter(FuncionarioDB.senha == obj["senha"]).first();
         
-        return funcionario, 200;
-    except Exception as e:
-        return {"Error: ": str(e)}, 400
-    finally:
-        session.close();
+#         return funcionario, 200;
+#     except Exception as e:
+#         return {"Error: ": str(e)}, 400
+#     finally:
+#         session.close();
