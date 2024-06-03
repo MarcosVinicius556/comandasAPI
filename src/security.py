@@ -13,14 +13,14 @@ db_clientes_api = {
         "username": "abc",
         "full_name": "Abc dos Testes",
         "email": "abc@example.com",
-        "password": "$2a$12$TvNeofQeJGcV/iFODD9Bn.rbLxQAe5hAwGAJ5WbtcyF9aKLSOMU4K",
+        "password": "$2a$12$DmR9/WEXtnFp8oiuMHmk5OBenosEIQDm9L7wuO5B.3Y.pcxncIfZ6",
         "disabled": False,
     },
         "bolinhas": {
         "username": "bolinhas",
         "full_name": "Bolinhas dos Testes",
         "email": "bolinhas@example.com",
-        "password": "$2a$12$TvNeofQeJGcV/iFODD9Bn.rbLxQAe5hAwGAJ5WbtcyF9aKLSOMU4K",
+        "password": "$2a$12$DmR9/WEXtnFp8oiuMHmk5OBenosEIQDm9L7wuO5B.3Y.pcxncIfZ6",
         "disabled": True,
     },
 }
@@ -57,8 +57,9 @@ def get_password_hash(password):
 def get_user(db, username: str):
     if username in db:
         user_dict = db[username]
-        
-    return UserInDB(**user_dict)
+        return UserInDB(**user_dict)
+    
+    return None
 
 def authenticate_user(fake_db, username: str, password: str):
     user = get_user(fake_db, username)

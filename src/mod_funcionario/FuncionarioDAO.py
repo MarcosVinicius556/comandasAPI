@@ -55,6 +55,7 @@ def findById(id: int):
 def update(id: int, obj: FuncionarioModel):
     try:
         session = db.Session();
+        session.begin();
         
         funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.id_funcionario == id).one();
         
@@ -68,8 +69,8 @@ def update(id: int, obj: FuncionarioModel):
         funcionario.grupo = obj.grupo;
         funcionario.senha = obj.senha;
         
-        session.begin();
-        session.add(obj);
+        # session.add(obj);
+        
         session.commit();
         
         return {"Detail": "Funcionário atualizado com sucesso!"}, 200;

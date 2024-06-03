@@ -9,7 +9,7 @@ from settings import STR_DATABASE;
 engine = create_engine(STR_DATABASE, echo=True);
 
 #Criará as sessões que iremos utilizar nas nossas transações com o banco de dados
-Session = sessionmaker(bind=engine);
+Session = sessionmaker(autocommit=False, autoflush=False, bind=engine);
 
 #Irá ficar responsável por "representar" as entidades no banco de dados de acordo com o mapeamento ORM
 Base = declarative_base();
