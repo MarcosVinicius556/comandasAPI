@@ -1,8 +1,8 @@
-import config.database.DatabaseConnection as DatabaseConnection;
+import db;
 
 from sqlalchemy import Column, INTEGER, VARCHAR, BLOB, DECIMAL;
 
-class ProdutoDB(DatabaseConnection.Base):
+class ProdutoDB(db.Base):
     __tablename__ = "tb_produto";
     
     id_produto = Column(INTEGER, primary_key=True, autoincrement=True, index=True);

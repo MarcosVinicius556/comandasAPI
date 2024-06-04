@@ -1,7 +1,7 @@
-import config.database.DatabaseConnection as DatabaseConnection;
+import db;
 from sqlalchemy import Column, CHAR, VARCHAR, INTEGER;
 
-class ClienteDB(DatabaseConnection.Base):
+class ClienteDB(db.Base):
     __tablename__ = "tb_cliente";
     
     id_cliente = Column(INTEGER, primary_key=True, autoincrement=True, index=True);
