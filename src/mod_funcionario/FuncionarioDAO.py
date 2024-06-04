@@ -84,12 +84,12 @@ def update(id: int, obj: FuncionarioModel):
 def delete(id: int):
     try:
         session = db.Session();
+        session.begin();
         funcionario = session.query(FuncionarioDB).filter(FuncionarioDB.id_funcionario == id).one();
 
         if funcionario is None:
             return {"Detail": "Nenhum registro encontrado!"}, 400;
         
-        session.begin();
         session.delete(funcionario);
         session.commit();
             
