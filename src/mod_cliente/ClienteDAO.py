@@ -13,7 +13,7 @@ router = APIRouter(dependencies=[Depends(get_current_active_user)]);
 def create(obj: ClienteModel):
     try:
         session = db.Session();
-        
+        print(obj)
         obj = ClienteDB(None, obj.nome, obj.cpf, obj.telefone);
         
         session.begin();
@@ -55,6 +55,7 @@ def findById(id: int):
 def update(id: int, obj: ClienteModel):
     try:
         session = db.Session();
+        session.begin();
         
         cliente = session.query(ClienteDB).filter(ClienteDB.id_cliente == id).one();
         
@@ -65,8 +66,7 @@ def update(id: int, obj: ClienteModel):
         cliente.cpf = obj.cpf;
         cliente.telefone = obj.telefone;
         
-        session.begin();
-        session.add(obj);
+        # session.add(obj);
         session.commit();
         
         return {"detail": "Cliente atualizado com sucesso!"}, 200
@@ -80,12 +80,13 @@ def update(id: int, obj: ClienteModel):
 def delete(id: int):
     try:
         session = db.Session();
+        session.begin();
+        
         cliente = session.query(ClienteDB).filter(ClienteDB.id_cliente == id).one();
 
         if cliente is None:
             return {"Detail": "Nenhum registro encontrado!"}, 400;
         
-        session.begin();
         session.delete(cliente);
         session.commit();
             
