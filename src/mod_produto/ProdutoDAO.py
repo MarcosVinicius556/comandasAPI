@@ -55,6 +55,7 @@ def findById(id: int):
 def update(id: int, obj: ProdutoModel):
     try:
         session = db.Session();
+        session.begin();
         
         produto = session.query(ProdutoDB).filter(ProdutoDB.id_produto == id).one();
         
@@ -66,8 +67,7 @@ def update(id: int, obj: ProdutoModel):
         produto.foto = obj.foto;
         produto.valor_unitario = obj.valor_unitario;
         
-        session.begin();
-        session.add(obj);
+        # session.add(obj);
         session.commit();
         
         return {"detail": "Produto atualizado com sucesso!"}, 200
@@ -81,12 +81,12 @@ def update(id: int, obj: ProdutoModel):
 def delete(id: int):
     try:
         session = db.Session();
+        session.begin();
         produto = session.query(ProdutoDB).filter(ProdutoDB.id_produto == id).one();
 
         if produto is None:
             return {"Detail": "Nenhum registro encontrado!"}, 400;
         
-        session.begin();
         session.delete(produto);
         session.commit();
             
