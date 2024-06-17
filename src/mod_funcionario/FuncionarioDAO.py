@@ -21,6 +21,7 @@ def create(obj: FuncionarioModel):
         session.commit();
         
     except Exception as e:
+        print(e)
         session.rollback(); 
         return {"erro": str(e)}, 400
     finally:
